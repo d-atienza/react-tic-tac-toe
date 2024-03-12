@@ -1,0 +1,26 @@
+div {
+  padding: 1rem;
+}
+
+.gameGrid {
+  background: orange;
+  outline: 2px solid dodgerblue;
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.cell {
+  background-color: skyblue;
+  outline: 2px solid tomato;
+  font-size: 6rem;
+  display: grid;
+  place-items: center;
+}
+
+button {
+  font: inherit;
+  font-size: 2rem;
+  padding: 1rem;
+  margin-top: 1rem;
+}
