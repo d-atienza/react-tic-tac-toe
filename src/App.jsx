@@ -5,12 +5,37 @@ import React from "react";
 
 function App() {
   /**
+   * @typedef {null | 'x' | 'o'} CellState
+   * */
+  /**
    * @type {CellState[]}
    */
-  const boardState = [null, "x", null, "o", "o", "x", "x", null, null];
+
+  const initialBoardState = [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ];
+  const [boardState, setBoardState] = useState(initialBoardState);
+
+  function whoseTurnIsIt() {
+    const numXs = boardState.filter((element) => element === "x").length;
+    const numOs = boardState.filter((element) => element === "o").length;
+
+    if (numXs >= numOs) {
+      return "o";
+    } else {
+      return "x";
+    }
+  }
 
   /**
-   * @typedef {null | 'x' | 'o'} CellState
    * @param {CellState[]} inputArray
    * @returns
    */
@@ -54,11 +79,11 @@ function App() {
 
   function handleClickCell(index) {
     console.log("cell index ", index);
+
+    const copyOfBoardState = [...boardState];
+    copyOfBoardState[index] = whoseTurnIsIt();
+    setBoardState(copyOfBoardState);
   }
-  // function changeCellState(cellState) {
-  //   // change from null to 'x' or 'o'
-  //   if (cellState === 'x')
-  // }
 
   return <div className="gameGrid">{createGridCellDivs(boardState)}</div>;
 }
