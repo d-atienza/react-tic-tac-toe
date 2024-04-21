@@ -1,19 +1,21 @@
-div {
-  padding: 1rem;
-}
+
 
 .gameGrid {
   background: orange;
   outline: 2px solid dodgerblue;
-  width: 600px;
-  height: 600px;
   display: grid;
+  width: fit-content;
+  place-items: center;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 .cell {
   background-color: skyblue;
   outline: 2px solid tomato;
-  font-size: 6rem;
+  font-size: 3rem;
+  overflow: clip;
+  width: 6rem;
+  aspect-ratio: 1;
   display: grid;
   place-items: center;
 }
