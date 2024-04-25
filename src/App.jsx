@@ -78,14 +78,30 @@ function App() {
   }
 
   function handleClickCell(index) {
-    console.log("cell index ", index);
-
     const copyOfBoardState = [...boardState];
-    copyOfBoardState[index] = whoseTurnIsIt();
-    setBoardState(copyOfBoardState);
+
+    if (copyOfBoardState[index] == null) {
+      copyOfBoardState[index] = whoseTurnIsIt();
+      setBoardState(copyOfBoardState);
+    } else {
+      console.log(index, " is not null");
+      return boardState;
+    }
   }
 
-  return <div className="gameGrid">{createGridCellDivs(boardState)}</div>;
+  function resetBoardState() {
+    console.log("this is a reset button");
+    setBoardState(initialBoardState);
+  }
+
+  return (
+    <div className="gameContainer">
+      <div className="gameGrid">{createGridCellDivs(boardState)} </div>
+      <div className="resetButton">
+        <button onClick={resetBoardState}>reset</button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
