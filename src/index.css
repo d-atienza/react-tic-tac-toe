@@ -1,6 +1,9 @@
 
 .gameContainer {
-  width: fit-content;
+  display:grid;
+  justify-content: center; 
+  align-items: center;
+  padding:25vh;
 }
 
 .gameGrid {
@@ -24,13 +27,12 @@
 
 button {
   font: inherit;
-  font-size: 2rem;
+  font-size: 1.50rem;
   padding: 1rem;
-  margin-top: 1rem;
+  margin: 0.5rem;
 }
 
 .resetButton {
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
+  display: grid;
+  justify-content:center;
 }

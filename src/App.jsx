@@ -78,14 +78,13 @@ function App() {
   }
 
   function handleClickCell(index) {
-    const copyOfBoardState = [...boardState];
+    const copyOfBoardState = [...boardState]; // shallow copy the current array of the board state
 
-    if (copyOfBoardState[index] == null) {
+    if (copyOfBoardState[index] === null) {
       copyOfBoardState[index] = whoseTurnIsIt();
-      setBoardState(copyOfBoardState);
+      setBoardState(copyOfBoardState); // update state with copy of array if the cell is null
     } else {
       console.log(index, " is not null");
-      return boardState;
     }
   }
 
