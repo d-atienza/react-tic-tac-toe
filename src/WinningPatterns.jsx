@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * array of tuples of three board indices, each describing a row
  */
@@ -12,8 +14,15 @@ const winningPatterns = [
   [2, 4, 6], // Diagonals
 ];
 
+/** */
+const exampleX = { outcome: "win", winner: "x" };
+const exampleO = { outcome: "win", winner: "o" };
+const exampleDraw = { outcome: "draw" };
+const exampleInPlay = { outcome: "in-play" };
+
 /**
- * @returns {'x' | 'o' | 'draw' | 'in-play'}
+ * @param {('x' | 'o' | null)[]} board
+ * @returns {{outcome: 'draw' | 'in-play'} | {outcome: 'win', winner: 'x' | 'o'}}
  */
 export default function checkWinner(board) {
   for (const winningPattern of winningPatterns) {
@@ -26,9 +35,9 @@ export default function checkWinner(board) {
       firstCell !== null && firstCell === secondCell && firstCell === thirdCell;
 
     if (isMatchingLine) {
-      return firstCell;
+      return { outcome: "win", winner: firstCell };
     }
   }
 
-  return board.includes(null) ? "in-play" : "draw";
+  return board.includes(null) ? { outcome: "in-play" } : { outcome: "draw" };
 }

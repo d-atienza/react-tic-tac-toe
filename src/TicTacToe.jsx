@@ -23,7 +23,12 @@ export default function TicTacToe() {
     null,
     null,
   ];
-  const [boardState, setBoardState] = useState(initialBoardState);
+  /**
+   * @type {('x' | 'o' | null)[]}
+   */
+  const exampleBoardState = ["o", "x", "o", "x", "o", "x", "x", "o", null];
+
+  const [boardState, setBoardState] = useState(exampleBoardState);
 
   function whoseTurnIsIt() {
     const numXs = boardState.filter((element) => element === "x").length;
@@ -89,22 +94,36 @@ export default function TicTacToe() {
     }
   }
 
+  function copyBoardState() {
+    navigator.clipboard.writeText(JSON.stringify(boardState));
+  }
+
   function resetBoardState() {
     console.log("this is a reset button");
     setBoardState(initialBoardState);
   }
 
   const winState = checkWinner(boardState);
-  const isGameOver = winState !== "in-play";
+  const isGameOver = winState.outcome !== "in-play";
 
   return (
     <div className="gameContainer">
       <div className="gameState">
-        {isGameOver && <div className="gameOver">{winState}</div>}
+        {isGameOver && (
+          <div className="gameOver">
+            {winState.outcome === "draw" ? (
+              "draw"
+            ) : (
+              // @ts-ignore
+              <div className="winner">{winState.winner}</div>
+            )}
+          </div>
+        )}
       </div>
       <div className="gameGrid">{createGridCellDivs(boardState)}</div>
       <div className="resetButton">
         <button onClick={resetBoardState}>reset</button>
+        <button onClick={copyBoardState}>copy game state</button>
       </div>
     </div>
   );
