@@ -9,13 +9,16 @@ const winningPatterns = [
   [2, 4, 6], // Diagonals
 ];
 
+/**
+ *
+ * @param {*} board
+ * @returns {'x' | 'o' | 'draw' | 'in-play'}
+ */
 export default function checkWinner(board) {
   for (let i = 0; i < winningPatterns.length; i++) {
     const [a, b, c] = winningPatterns[i];
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return <div>{board[a]} is the winner!</div>;
+      return <div className="gameOverOverlay">{board[a]} is the winner!</div>;
     }
   }
-
-  return <div>play on!</div>;
 }
