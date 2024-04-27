@@ -94,13 +94,13 @@ export default function TicTacToe() {
     setBoardState(initialBoardState);
   }
 
+  const winState = checkWinner(boardState);
+
   return (
     <div className="gameContainer">
       <div className="gameState">
-        {boardState.includes(null) ? (
-          checkWinner(boardState)
-        ) : (
-          <div className="gameOverOverlay">its a draw!</div>
+        {(winState === "x" || winState === "o" || winState === "draw") && (
+          <div className="gameOver">{winState}</div>
         )}
       </div>
       <div className="gameGrid">{createGridCellDivs(boardState)}</div>

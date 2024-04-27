@@ -45,14 +45,14 @@ button {
   justify-content:center;
 }
 
-.gameOverOverlay {
+.gameOver{
   font-size: 2rem;
   background: skyblue;
   position: absolute;
   top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 1;
+  opacity: 0.8;
   padding: 3rem;
   border-radius: 0.5rem;
 }

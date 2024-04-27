@@ -1,3 +1,6 @@
+/**
+ * array of tuples of three board indices, each describing a row
+ */
 const winningPatterns = [
   [0, 1, 2],
   [3, 4, 5],
@@ -10,15 +13,22 @@ const winningPatterns = [
 ];
 
 /**
- *
- * @param {*} board
  * @returns {'x' | 'o' | 'draw' | 'in-play'}
  */
 export default function checkWinner(board) {
-  for (let i = 0; i < winningPatterns.length; i++) {
-    const [a, b, c] = winningPatterns[i];
-    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return <div className="gameOverOverlay">{board[a]} is the winner!</div>;
+  for (const winningPattern of winningPatterns) {
+    const [indexA, indexB, indexC] = winningPattern;
+    const firstCell = board[indexA];
+    const secondCell = board[indexB];
+    const thirdCell = board[indexC];
+
+    const isMatchingLine =
+      firstCell !== null && firstCell === secondCell && firstCell === thirdCell;
+
+    if (isMatchingLine) {
+      return firstCell;
     }
   }
+
+  return board.includes(null) ? "in-play" : "draw";
 }
