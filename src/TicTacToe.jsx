@@ -95,13 +95,12 @@ export default function TicTacToe() {
   }
 
   const winState = checkWinner(boardState);
+  const isGameOver = winState !== "in-play";
 
   return (
     <div className="gameContainer">
       <div className="gameState">
-        {(winState === "x" || winState === "o" || winState === "draw") && (
-          <div className="gameOver">{winState}</div>
-        )}
+        {isGameOver && <div className="gameOver">{winState}</div>}
       </div>
       <div className="gameGrid">{createGridCellDivs(boardState)}</div>
       <div className="resetButton">
